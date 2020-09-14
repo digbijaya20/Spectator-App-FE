@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import GuestContext from '../../Context/guestContext/GuestContext'
 import Guest from './Guest'
 
 const Guests = () => {
+   const {guests, filterGuest} = useContext(GuestContext)
   return (
     <div className="guests">
-      <Guest />
+      {guests.filter(guest => !filterGuest || guest.isconfirmed )
+      .map(guest => <Guest key={guest.id} guest={guest} />)}
     </div>
   )
 }

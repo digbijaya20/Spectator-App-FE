@@ -1,3 +1,5 @@
+Spectator is a simple webApplication using MERN Stack. It's main aims to keep track of guests which are invite in special Party or events.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

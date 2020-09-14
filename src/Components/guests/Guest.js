@@ -1,12 +1,19 @@
-import React from 'react'
+import React , {useContext} from 'react'
+import GuestContext from '../../Context/guestContext/GuestContext';
 
-const Guest = () => {
+const Guest = ({guest}) => {
+  const {removeGuest} = useContext(GuestContext)
+  const { id, name,phone, dietary, isconfirmed} =guest;
+  const handleRemove = () =>{
+    removeGuest(id)
+  }
+
   return (
     <div className="guest-card">
       <div className="card-head">
         <div>
-          <label> Confirmed
-        <i className='fas fa-check-square '>
+          <label className={`${isconfirmed && 'confirm'}`}> Confirmed
+        <i className={`fas fa-check-square ${isconfirmed && 'confirm'}`} >
               <input type="checkbox" />
             </i>
           </label>
@@ -15,17 +22,20 @@ const Guest = () => {
           <button>
             <i className="fas fa-user-edit"></i>
           </button>
-          <button>
+          <button onClick={handleRemove}>
             <i className="fas fa-trash-alt remove"></i>
           </button>
         </div>
       </div>
       <div className="card-body">
-        <h2>Digbijaya Biswal</h2>
-        <span className='badge red'>'Non-Veg'</span>
+        <h2>{name}</h2>
+        <span 
+        className={'badge ' + (dietary === 'Non-Veg' ? 'red' : dietary === 'Vegan' ? 'green':'seagreen')}>
+        {dietary}
+        </span>
         <div className="contact">
           <i className="fas fa-phone-alt" />
-          <p>966-868-5560</p>
+          <p>{phone}</p>
         </div>
       </div>
     </div>
