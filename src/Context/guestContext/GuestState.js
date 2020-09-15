@@ -5,11 +5,15 @@ import {
     TOGGLE_FILTER,
     ADD_GUEST,
     REMOVE_GUEST,
+    UPDATE_GUEST,
+    EDIT_GUEST,
+    CLEAR_EDIT,
 } from '../types';
 
 const GuestState = (props) => {
     const initialState = {
         filterGuest: false,
+        editAble: null,
 
         guests: [
             {
@@ -37,6 +41,8 @@ const GuestState = (props) => {
     }
     const [state, dispatch] = useReducer(GuestReducer, initialState)
 
+//---------------------------Add Guest------------------------//
+
     const addGuest =(guest)=>{
         guest.id = Date.now()
         guest.isconfirmed = false
@@ -45,12 +51,39 @@ const GuestState = (props) => {
         payload:guest
         })
     }
+//-----------------------------Remove Guest------------------------//
     const removeGuest = (id) =>{
         dispatch({
             type:REMOVE_GUEST,
             payload:id,
         })
     }
+
+//-----------------------------Update IsconfirmedGuest------------------------//
+
+    const updateGuest = (guest) =>{
+       dispatch({
+           type:UPDATE_GUEST,
+           payload:guest,
+       })
+    }
+//-----------------------------Edit Guest------------------------//
+    
+    const editGuest = (guest) =>{
+        dispatch({
+            type:EDIT_GUEST,
+            payload:guest,
+        })
+    }
+
+//-----------------------------Clear Edit------------------------//
+
+    const clearEdit = (guest) =>{
+        dispatch({
+            type: CLEAR_EDIT,
+        })
+    }
+
     const toggleFilter = () =>{
         dispatch({
             type: TOGGLE_FILTER
@@ -62,10 +95,13 @@ const GuestState = (props) => {
         <GuestContext.Provider
             value={{ 
                 guests: state.guests,
+                filterGuest: state.filterGuest,
+                editAble: state.editAble,
                 addGuest,
                 removeGuest,
-                filterGuest: state.filterGuest,
-
+                updateGuest,
+                editGuest,
+                clearEdit,
                 toggleFilter,
              }}
         >
