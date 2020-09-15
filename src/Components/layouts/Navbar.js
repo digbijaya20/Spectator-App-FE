@@ -5,9 +5,9 @@ const NavBar = () => {
     <div className="navbar">
       <div className="logo">
         <h1><i className='fas fa-glass-cheers' />
-          Spector App
+          Spectator App
         </h1>
-        <p>Made with <span>❤</span> by Digbijaya</p> 
+        {/*<p>Made with <span>❤</span> by Digbijaya</p> */}
       </div>
       <ul>
         <li>Hello, Digbijaya</li>
